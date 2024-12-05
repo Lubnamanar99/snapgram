@@ -82,11 +82,11 @@
     </div> -->
                     <div class="create-form">
                         <p class="head-text-black">Create a Post</p>
-                        <form>
+                        <form action="/post/add" method="post"  enctype="multipart/form-data">
                             <div class="mb-3">
 
                                 <label for="post-image" >Upload Image</label>
-                                <input type="file" class="form-control-file" id="post-image" accept="image/*">
+                                <input type="file" class="form-control-file" id="post-image" accept="image/*" name="image">
                             </div>
                             <div class="mb-3">
                                 <label for="post-text">Write a Caption</label>

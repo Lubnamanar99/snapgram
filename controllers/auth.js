@@ -1,5 +1,4 @@
 const User = require('../models/User')
-const jwt = require('jsonwebtoken')
 
 exports.getLoginPage = (req,res)=>{
     return res.render('login',{msg:''})
@@ -32,13 +31,15 @@ exports.login= async(req,res)=>{
     if(!user){
          return res.render('login',{msg:'Invalid username or password'})
     }
+    console.log(user)
+    let auth = await user.isPasswordCorrect(password) 
 
-    if(user.password != password){
+    if(!auth){
          return res.render('login',{msg:'Invalid username or password'})
 
     }
 
-    let token = jwt.sign({name:user.name,username:user.username,id:user.id},process.env.JWT_SECRET)
+    let token = user.getJWT()
 
     return res.cookie('uc',token,{httpOnly:true}).redirect('/')
 }

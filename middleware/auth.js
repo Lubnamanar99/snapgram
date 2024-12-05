@@ -15,7 +15,6 @@ exports.currentUser =(req,res,next)=>{
         }
         let token = req.cookies?.uc  
         if(token){
-            console.log(jwt.verify(token,process.env.JWT_SECRET))
             req.user=jwt.verify(token,process.env.JWT_SECRET)
             return next()
         } 
